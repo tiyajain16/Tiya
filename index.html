@@ -271,7 +271,8 @@ nav {
   padding-left:1.2rem; position:relative;
 }
 .exp-list li::before {
-  content:"•"; position:absolute; left:0;
+  content:"•";
+  position:absolute; left:0;
   color:var(--gold); font-size:0.7rem; top:0.12rem;
 }
 
@@ -324,30 +325,6 @@ nav {
   letter-spacing:0.05em;
   border:1px solid var(--border); color:var(--muted);
   padding:0.16rem 0.52rem;
-}
-.proj-add-card {
-  background:var(--bg);
-  border:2px dashed rgba(212,168,67,0.18);
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
-  text-align:center; padding:3rem 2rem;
-  cursor:pointer; min-height:220px;
-  transition:border-color 0.2s, background 0.2s;
-}
-.proj-add-card:hover {
-  border-color:rgba(212,168,67,0.4);
-  background:var(--surface2);
-}
-  .proj-add-card { display: none; }
-.add-plus {
-  font-size:2rem; color:var(--gold);
-  line-height:1; margin-bottom:0.6rem;
-  font-weight:normal; font-family:Georgia,serif;
-}
-.add-label {
-  font-family:'Courier New', monospace;
-  font-size:0.63rem; letter-spacing:0.14em; text-transform:uppercase;
-  color:var(--muted);
 }
 
 /* CERTIFICATIONS */
@@ -643,7 +620,6 @@ footer span { color:var(--gold); }
   </div>
   <div class="proj-grid reveal">
 
-    <!-- REAL 1: Bloomberg -->
     <div class="proj-card">
       <div class="proj-top-line"></div>
       <span class="verified-tag">Verified</span>
@@ -659,7 +635,6 @@ footer span { color:var(--gold); }
       </div>
     </div>
 
-    <!-- REAL 2: NISM -->
     <div class="proj-card">
       <div class="proj-top-line"></div>
       <span class="verified-tag">Verified</span>
@@ -675,7 +650,6 @@ footer span { color:var(--gold); }
       </div>
     </div>
 
-    <!-- Sample 1 -->
     <div class="proj-card">
       <div class="proj-top-line"></div>
       <div class="proj-icon">&#128202;</div>
@@ -689,7 +663,6 @@ footer span { color:var(--gold); }
       </div>
     </div>
 
-    <!-- Sample 2 -->
     <div class="proj-card">
       <div class="proj-top-line"></div>
       <div class="proj-icon">&#128200;</div>
@@ -703,7 +676,6 @@ footer span { color:var(--gold); }
       </div>
     </div>
 
-    <!-- Sample 3 -->
     <div class="proj-card">
       <div class="proj-top-line"></div>
       <div class="proj-icon">&#127970;</div>
@@ -717,7 +689,6 @@ footer span { color:var(--gold); }
       </div>
     </div>
 
-    <!-- Sample 4 -->
     <div class="proj-card">
       <div class="proj-top-line"></div>
       <div class="proj-icon">&#128269;</div>
@@ -731,7 +702,6 @@ footer span { color:var(--gold); }
       </div>
     </div>
 
-    <!-- Sample 5 -->
     <div class="proj-card">
       <div class="proj-top-line"></div>
       <div class="proj-icon">&#127807;</div>
@@ -743,13 +713,6 @@ footer span { color:var(--gold); }
         <span class="proj-tag">Term Sheets</span>
         <span class="proj-tag">Valuation</span>
       </div>
-    </div>
-
-    <!-- Add More -->
-    <div class="proj-add-card">
-      <div class="add-plus">+</div>
-      <p class="add-label">Add Your Project</p>
-      <p style="font-size:0.73rem;color:var(--muted);margin-top:0.4rem;">Replace this card in the HTML</p>
     </div>
 
   </div>
@@ -898,7 +861,6 @@ footer span { color:var(--gold); }
 </footer>
 
 <script>
-  // Scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -910,7 +872,6 @@ footer span { color:var(--gold); }
   }, { threshold: 0.07 });
   revealEls.forEach(el => obs.observe(el));
 
-  // Nav highlight
   const sections = document.querySelectorAll('[id]');
   const navAs = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
