@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiya Jain — Finance & Strategy Portfolio</title>
+<style>
+:root {
+  --bg: #0D0C0A;
+  --surface: #141310;
+  --surface2: #1C1A16;
+  --border: rgba(255,255,255,0.07);
+  --gold: #D4A843;
+  --gold2: #F0C96A;
+  --text: #EDE8DC;
+  --muted: #7A7468;
+  --accent: #C17B3A;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Georgia, 'Times New Roman', serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar { width:3px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:var(--gold); }
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:999;
+  padding:1.2rem 3rem;
+  display:flex; justify-content:space-between; align-items:center;
+  background:rgba(13,12,10,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-brand {
+  font-size:1.1rem; font-weight:bold; letter-spacing:0.04em;
+  color:var(--text); text-decoration:none;
+}
+.nav-brand span { color:var(--gold); }
+.nav-links { display:flex; gap:2rem; list-style:none; }
+.nav-links a {
+  font-family:'Courier New', monospace;
+  font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--muted); text-decoration:none; transition:color 0.2s;
+}
+.nav-links a:hover { color:var(--gold); }
+
+/* HERO */
+.hero {
+  min-height:100vh;
+  padding:8rem 3rem 5rem;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(212,168,67,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,168,67,0.035) 1px, transparent 1px);
+  background-size:64px 64px;
+  pointer-events:none;
+}
+.hero-glow {
+  position:absolute;
+  width:700px; height:700px;
+  top:-150px; right:-150px;
+  background:radial-gradient(circle, rgba(212,168,67,0.07) 0%, transparent 65%);
+  pointer-events:none;
+}
+
+@keyframes fadeInUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+@keyframes blink    { 0%,100%{opacity:1} 50%{opacity:0.25} }
+
+.live-badge {
+  display:inline-flex; align-items:center; gap:0.55rem;
+  background:rgba(212,168,67,0.09);
+  border:1px solid rgba(212,168,67,0.28);
+  color:var(--gold);
+  font-family:'Courier New', monospace;
+  font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase;
+  padding:0.38rem 1rem;
+  margin-bottom:2rem;
+  animation:fadeInUp 0.5s ease both;
+}
+.live-dot {
+  width:6px; height:6px;
+  background:var(--gold); border-radius:50%;
+  animation:blink 2s infinite;
+}
+
+.hero-name {
+  font-size:clamp(3rem,5.5vw,5.2rem);
+  font-weight:bold;
+  line-height:1.02;
+  letter-spacing:-0.025em;
+  margin-bottom:0.3rem;
+  animation:fadeInUp 0.6s 0.1s ease both;
+}
+.hero-name-italic {
+  color:var(--gold);
+  font-style:italic;
+  font-weight:normal;
+  display:block;
+}
+.hero-role {
+  font-family:'Courier New', monospace;
+  font-size:0.75rem; letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:1.6rem;
+  animation:fadeInUp 0.6s 0.18s ease both;
+}
+.hero-bio {
+  font-size:1rem; line-height:1.85;
+  color:rgba(237,232,220,0.68);
+  max-width:430px;
+  margin-bottom:2.5rem;
+  animation:fadeInUp 0.6s 0.26s ease both;
+}
+.hero-actions {
+  display:flex; gap:1rem; flex-wrap:wrap;
+  animation:fadeInUp 0.6s 0.34s ease both;
+}
+
+.btn {
+  display:inline-block; text-decoration:none;
+  font-family:'Courier New', monospace;
+  font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase;
+  padding:0.85rem 1.9rem;
+  transition:all 0.22s; cursor:pointer; border:none;
+}
+.btn-solid {
+  background:var(--gold); color:#0D0C0A; font-weight:bold;
+}
+.btn-solid:hover { background:var(--gold2); transform:translateY(-2px); box-shadow:0 8px 28px rgba(212,168,67,0.28); }
+.btn-outline {
+  background:transparent; color:var(--text);
+  border:1px solid rgba(255,255,255,0.12);
+}
+.btn-outline:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-2px); }
+
+/* HERO RIGHT */
+.stat-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:1px;
+  background:var(--border); border:1px solid var(--border);
+  margin-bottom:1.8rem;
+  animation:fadeIn 0.8s 0.5s ease both;
+}
+.stat-box {
+  background:var(--surface);
+  padding:1.7rem 1.4rem;
+  transition:background 0.2s;
+}
+.stat-box:hover { background:var(--surface2); }
+.stat-num {
+  display:block;
+  font-size:2.1rem; font-weight:bold; color:var(--gold);
+  line-height:1; margin-bottom:0.3rem;
+}
+.stat-lbl {
+  font-family:'Courier New', monospace;
+  font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--muted);
+}
+.hero-pull-quote {
+  background:var(--surface);
+  border-left:3px solid var(--gold);
+  padding:1.2rem 1.4rem;
+  font-style:italic; font-size:0.93rem;
+  color:rgba(237,232,220,0.6); line-height:1.75;
+  animation:fadeIn 0.8s 0.65s ease both;
+}
+
+/* SECTION */
+.section { padding:6rem 3rem; }
+.section-dark { background:var(--surface); }
+
+.sec-head {
+  display:flex; align-items:center; gap:1.2rem;
+  margin-bottom:3.5rem;
+}
+.sec-num {
+  font-family:'Courier New', monospace;
+  font-size:0.62rem; letter-spacing:0.18em;
+  color:var(--gold);
+  border:1px solid rgba(212,168,67,0.28);
+  padding:0.2rem 0.6rem;
+}
+.sec-title {
+  font-size:clamp(1.75rem,3vw,2.4rem);
+  font-weight:bold; letter-spacing:-0.02em;
+}
+.sec-rule { flex:1; height:1px; background:var(--border); }
+
+/* ABOUT */
+.about-cols {
+  display:grid; grid-template-columns:1.4fr 1fr; gap:4rem; align-items:start;
+}
+.about-body p {
+  font-size:0.98rem; line-height:1.9;
+  color:rgba(237,232,220,0.72);
+}
+.about-body p + p { margin-top:1rem; }
+
+.skill-group { margin-bottom:1.8rem; }
+.skill-group:last-child { margin-bottom:0; }
+.skill-group-label {
+  font-family:'Courier New', monospace;
+  font-size:0.6rem; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:0.7rem;
+}
+.skill-pills { display:flex; flex-wrap:wrap; gap:0.45rem; }
+.skill-pill {
+  font-family:'Courier New', monospace;
+  font-size:0.63rem; letter-spacing:0.05em;
+  border:1px solid rgba(212,168,67,0.18);
+  color:rgba(237,232,220,0.6);
+  padding:0.28rem 0.72rem;
+  transition:all 0.18s;
+}
+.skill-pill:hover { border-color:var(--gold); color:var(--gold); }
+
+/* EXPERIENCE */
+.exp-item {
+  display:grid; grid-template-columns:190px 1fr; gap:2.5rem;
+  padding:2.5rem 0;
+  border-bottom:1px solid var(--border);
+}
+.exp-item:first-of-type { border-top:1px solid var(--border); }
+.exp-period {
+  font-family:'Courier New', monospace;
+  font-size:0.63rem; letter-spacing:0.09em;
+  color:var(--muted); text-transform:uppercase;
+  margin-bottom:0.6rem;
+}
+.exp-badge {
+  display:inline-block;
+  background:rgba(212,168,67,0.12);
+  border:1px solid rgba(212,168,67,0.28);
+  color:var(--gold);
+  font-family:'Courier New', monospace;
+  font-size:0.57rem; letter-spacing:0.1em; text-transform:uppercase;
+  padding:0.18rem 0.55rem;
+}
+.exp-company {
+  font-size:1.38rem; font-weight:bold; margin-bottom:0.15rem;
+}
+.exp-role {
+  font-family:'Courier New', monospace;
+  font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:1rem;
+}
+.exp-list { list-style:none; display:flex; flex-direction:column; gap:0.52rem; }
+.exp-list li {
+  font-size:0.91rem; line-height:1.72;
+  color:rgba(237,232,220,0.65);
+  padding-left:1.2rem; position:relative;
+}
+.exp-list li::before {
+  content:'&#9658;'; position:absolute; left:0;
+  color:var(--gold); font-size:0.7rem; top:0.12rem;
+}
+
+/* PROJECTS */
+.proj-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1px; background:var(--border); border:1px solid var(--border);
+}
+.proj-card {
+  background:var(--bg);
+  padding:2rem 1.8rem;
+  position:relative; overflow:hidden;
+  transition:background 0.22s;
+}
+.proj-card:hover { background:var(--surface2); }
+.proj-top-line {
+  position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, var(--gold), var(--accent));
+  transform:scaleX(0); transform-origin:left;
+  transition:transform 0.32s;
+}
+.proj-card:hover .proj-top-line { transform:scaleX(1); }
+
+.verified-tag {
+  position:absolute; top:1rem; right:1rem;
+  background:rgba(212,168,67,0.13);
+  border:1px solid rgba(212,168,67,0.38);
+  color:var(--gold);
+  font-family:'Courier New', monospace;
+  font-size:0.52rem; letter-spacing:0.1em; text-transform:uppercase;
+  padding:0.13rem 0.48rem;
+}
+.proj-icon { font-size:1.5rem; margin-bottom:1rem; line-height:1; }
+.proj-cat {
+  font-family:'Courier New', monospace;
+  font-size:0.58rem; letter-spacing:0.13em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:0.45rem;
+}
+.proj-name {
+  font-size:1.02rem; font-weight:bold;
+  line-height:1.3; margin-bottom:0.75rem;
+}
+.proj-desc {
+  font-size:0.82rem; line-height:1.7;
+  color:rgba(237,232,220,0.58); margin-bottom:1.2rem;
+}
+.proj-tags { display:flex; flex-wrap:wrap; gap:0.32rem; }
+.proj-tag {
+  font-family:'Courier New', monospace; font-size:0.56rem;
+  letter-spacing:0.05em;
+  border:1px solid var(--border); color:var(--muted);
+  padding:0.16rem 0.52rem;
+}
+.proj-add-card {
+  background:var(--bg);
+  border:2px dashed rgba(212,168,67,0.18);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center; padding:3rem 2rem;
+  cursor:pointer; min-height:220px;
+  transition:border-color 0.2s, background 0.2s;
+}
+.proj-add-card:hover {
+  border-color:rgba(212,168,67,0.4);
+  background:var(--surface2);
+}
+.add-plus {
+  font-size:2rem; color:var(--gold);
+  line-height:1; margin-bottom:0.6rem;
+  font-weight:normal; font-family:Georgia,serif;
+}
+.add-label {
+  font-family:'Courier New', monospace;
+  font-size:0.63rem; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* CERTIFICATIONS */
+.cert-grid {
+  display:grid; grid-template-columns:repeat(2,1fr);
+  gap:1px; background:var(--border); border:1px solid var(--border);
+}
+.cert-card {
+  background:var(--surface);
+  padding:1.6rem 2rem;
+  display:flex; gap:1.2rem; align-items:flex-start;
+  transition:background 0.2s;
+}
+.cert-card:hover { background:var(--surface2); }
+.cert-badge {
+  width:34px; height:34px; flex-shrink:0;
+  background:rgba(212,168,67,0.1);
+  border:1px solid rgba(212,168,67,0.22);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--gold); font-size:0.78rem; font-weight:bold;
+  font-family:'Courier New', monospace;
+  margin-top:0.1rem;
+}
+.cert-name { font-size:0.93rem; font-weight:bold; margin-bottom:0.2rem; }
+.cert-org {
+  font-family:'Courier New', monospace;
+  font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:0.45rem;
+}
+.cert-blurb { font-size:0.79rem; line-height:1.65; color:rgba(237,232,220,0.52); }
+
+/* EDUCATION */
+.edu-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+.edu-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:2.5rem;
+  position:relative; overflow:hidden;
+  transition:border-color 0.22s;
+}
+.edu-card:hover { border-color:rgba(212,168,67,0.38); }
+.edu-card::after {
+  content:'';
+  position:absolute; bottom:0; left:0;
+  width:100%; height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+}
+.edu-degree-label {
+  font-family:'Courier New', monospace;
+  font-size:0.6rem; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:0.7rem;
+}
+.edu-school { font-size:1.32rem; font-weight:bold; margin-bottom:0.25rem; }
+.edu-sub {
+  font-size:0.87rem; color:var(--muted);
+  margin-bottom:1.5rem; line-height:1.5;
+}
+.edu-chips { display:flex; gap:0.7rem; flex-wrap:wrap; }
+.edu-chip {
+  font-family:'Courier New', monospace; font-size:0.63rem;
+  letter-spacing:0.07em;
+  border:1px solid rgba(212,168,67,0.28);
+  color:var(--gold2); padding:0.27rem 0.72rem;
+}
+
+/* CONTACT */
+.contact-inner { max-width:700px; margin:0 auto; text-align:center; }
+.contact-divider {
+  width:44px; height:2px;
+  background:linear-gradient(90deg,var(--gold),var(--accent));
+  margin:0 auto 2rem;
+}
+.contact-title {
+  font-size:clamp(2rem,4vw,3.4rem);
+  font-weight:bold; letter-spacing:-0.025em; margin-bottom:1rem;
+}
+.contact-title em { color:var(--gold); font-style:italic; font-weight:normal; }
+.contact-sub {
+  font-size:0.95rem; color:var(--muted);
+  margin-bottom:3rem; line-height:1.85;
+}
+.contact-cards {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1px; background:var(--border); border:1px solid var(--border);
+  margin-bottom:2.5rem;
+}
+.contact-card {
+  background:var(--surface);
+  padding:1.8rem 1rem;
+  display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+  text-decoration:none; color:inherit;
+  transition:background 0.2s;
+}
+.contact-card:hover { background:var(--surface2); }
+.cc-icon { font-size:1.3rem; line-height:1; }
+.cc-lbl {
+  font-family:'Courier New', monospace;
+  font-size:0.58rem; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--muted);
+}
+.cc-val { font-size:0.83rem; color:var(--text); }
+.contact-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+/* FOOTER */
+footer {
+  background:var(--surface); border-top:1px solid var(--border);
+  text-align:center; padding:1.8rem;
+  font-family:'Courier New', monospace;
+  font-size:0.63rem; letter-spacing:0.09em; color:var(--muted);
+}
+footer span { color:var(--gold); }
+
+/* REVEAL ANIMATION */
+.reveal {
+  opacity:0; transform:translateY(26px);
+  transition:opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav { padding:1rem 1.5rem; }
+  .nav-links { gap:1.2rem; }
+  .nav-links a { font-size:0.6rem; }
+  .hero { grid-template-columns:1fr; padding:7rem 1.5rem 4rem; gap:2.5rem; }
+  .hero-right { display:none; }
+  .section { padding:4rem 1.5rem; }
+  .about-cols { grid-template-columns:1fr; gap:2.5rem; }
+  .exp-item { grid-template-columns:1fr; gap:0.4rem; }
+  .proj-grid { grid-template-columns:1fr; }
+  .cert-grid { grid-template-columns:1fr; }
+  .edu-grid { grid-template-columns:1fr; }
+  .contact-cards { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">Tiya <span>Jain</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="hero-glow"></div>
+  <div>
+    <div class="live-badge"><span class="live-dot"></span>Open to Opportunities</div>
+    <h1 class="hero-name">
+      Tiya
+      <span class="hero-name-italic">Jain.</span>
+    </h1>
+    <p class="hero-role">Finance &amp; Strategy Professional</p>
+    <p class="hero-bio">
+      Turning financial data into actionable strategy. Skilled in valuation, equity research, and corporate finance — with a track record of delivering data-driven insights at real organisations.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-solid">View Portfolio</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+  </div>
+  <div>
+    <div class="stat-grid">
+      <div class="stat-box">
+        <span class="stat-num">7+</span>
+        <span class="stat-lbl">Certifications</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">8.75</span>
+        <span class="stat-lbl">BBA CGPA</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">2x</span>
+        <span class="stat-lbl">Internships</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">PGDM</span>
+        <span class="stat-lbl">FORE School</span>
+      </div>
+    </div>
+    <div class="hero-pull-quote">
+      "Proficient in turning quantitative insights into actionable finance and investment strategies."
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section section-dark" id="about">
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">About</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="about-cols reveal">
+    <div class="about-body">
+      <p>I am a finance-focused management professional with a strong foundation in financial analysis, valuation, and data-driven decision making. Currently pursuing my PGDM at FORE School of Management, Gurgaon, specialising in Finance and Marketing.</p>
+      <p>My experience spans sales analytics at JK Lakshmi Cement Ltd. and financial modelling at Tag:11 Infotech, giving me hands-on exposure to how numbers translate into real business outcomes.</p>
+      <p>I thrive at the intersection of quantitative rigour and strategic thinking — whether building interactive Power BI dashboards, performing DCF valuations, structuring investment memos, or analysing mutual fund suitability. I am actively seeking opportunities in corporate finance, equity research, and investment banking.</p>
+    </div>
+    <div>
+      <div class="skill-group">
+        <p class="skill-group-label">Financial Skills</p>
+        <div class="skill-pills">
+          <span class="skill-pill">Ratio Analysis</span>
+          <span class="skill-pill">Valuation</span>
+          <span class="skill-pill">Financial Modeling</span>
+          <span class="skill-pill">Risk Management</span>
+          <span class="skill-pill">Corporate Finance</span>
+          <span class="skill-pill">Equity Research</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-label">Tools &amp; Platforms</p>
+        <div class="skill-pills">
+          <span class="skill-pill">MS Excel (Advanced)</span>
+          <span class="skill-pill">Power BI</span>
+          <span class="skill-pill">Bloomberg Terminal</span>
+          <span class="skill-pill">PowerPoint</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-label">Soft Skills</p>
+        <div class="skill-pills">
+          <span class="skill-pill">Strategic Planning</span>
+          <span class="skill-pill">Leadership</span>
+          <span class="skill-pill">Communication</span>
+          <span class="skill-pill">Adaptability</span>
+          <span class="skill-pill">Resilience Under Pressure</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">Experience</h2>
+    <div class="sec-rule"></div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div>
+      <p class="exp-period">May 2025 &mdash; Jun 2025</p>
+      <span class="exp-badge">Internship</span>
+    </div>
+    <div>
+      <p class="exp-company">JK Lakshmi Cement Ltd.</p>
+      <p class="exp-role">Sales Analyst</p>
+      <ul class="exp-list">
+        <li>Analysed large regional sales datasets to identify trends and performance patterns, supporting strategic planning through data-driven insights.</li>
+        <li>Monitored dealer network performance metrics on a regular basis, tracking both primary and secondary sales indicators.</li>
+        <li>Prepared detailed monthly sales and performance reports for management review, ensuring accuracy and consistency in reporting.</li>
+        <li>Built interactive Power BI dashboards for forecasting and decision support, improving visibility of KPIs and sales performance metrics.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div>
+      <p class="exp-period">Jun 2023 &mdash; Aug 2023</p>
+      <span class="exp-badge">Live Project</span>
+    </div>
+    <div>
+      <p class="exp-company">Tag:11 Infotech</p>
+      <p class="exp-role">Finance Intern</p>
+      <ul class="exp-list">
+        <li>Assisted in financial data analysis and report preparation for management reviews, supporting MIS tracking to improve decision-making accuracy.</li>
+        <li>Worked on budgeting and expense analysis using Excel tools, identifying cost trends and variance patterns across datasets.</li>
+        <li>Supported financial modelling and basic valuation for internal project evaluation, helping structure assumptions and interpret output results.</li>
+        <li>Collaborated with cross-functional teams on financial data organisation, improving record accuracy and documentation quality.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section section-dark" id="projects">
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">Projects</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="proj-grid reveal">
+
+    <!-- REAL 1: Bloomberg -->
+    <div class="proj-card">
+      <div class="proj-top-line"></div>
+      <span class="verified-tag">Verified</span>
+      <div class="proj-icon">&#128225;</div>
+      <p class="proj-cat">Bloomberg &bull; Feb 2026</p>
+      <p class="proj-name">Financial Product Marketing Strategy</p>
+      <p class="proj-desc">Applied Bloomberg Marketing Concepts to design a client segmentation framework and value proposition for a financial product. Mapped target investor profiles, identified positioning gaps, and built a data-driven solution-messaging strategy using Bloomberg-based case scenarios.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Bloomberg Terminal</span>
+        <span class="proj-tag">Client Segmentation</span>
+        <span class="proj-tag">Value Proposition</span>
+        <span class="proj-tag">Market Positioning</span>
+      </div>
+    </div>
+
+    <!-- REAL 2: NISM -->
+    <div class="proj-card">
+      <div class="proj-top-line"></div>
+      <span class="verified-tag">Verified</span>
+      <div class="proj-icon">&#127974;</div>
+      <p class="proj-cat">NISM Certified &bull; Feb 2026</p>
+      <p class="proj-name">Mutual Fund Suitability &amp; Distribution Analysis</p>
+      <p class="proj-desc">Developed an investor suitability assessment framework as part of NISM Series V-A preparation. Analysed mutual fund categories (equity, debt, hybrid), mapped products to risk-return profiles, and outlined a compliant distribution model covering SEBI regulations and KYC norms.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Mutual Fund Analysis</span>
+        <span class="proj-tag">SEBI Regulations</span>
+        <span class="proj-tag">Investor Profiling</span>
+        <span class="proj-tag">Risk-Return Mapping</span>
+      </div>
+    </div>
+
+    <!-- Sample 1 -->
+    <div class="proj-card">
+      <div class="proj-top-line"></div>
+      <div class="proj-icon">&#128202;</div>
+      <p class="proj-cat">Equity Research</p>
+      <p class="proj-name">Company Valuation Report</p>
+      <p class="proj-desc">In-depth DCF and comparable company analysis of a listed Indian firm, with buy/sell/hold recommendation and full investment thesis.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Excel</span>
+        <span class="proj-tag">DCF</span>
+        <span class="proj-tag">Comparable Comps</span>
+      </div>
+    </div>
+
+    <!-- Sample 2 -->
+    <div class="proj-card">
+      <div class="proj-top-line"></div>
+      <div class="proj-icon">&#128200;</div>
+      <p class="proj-cat">Financial Modeling</p>
+      <p class="proj-name">3-Statement Financial Model</p>
+      <p class="proj-desc">Built an integrated Income Statement, Balance Sheet, and Cash Flow model from historical data and forward projected assumptions.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Excel</span>
+        <span class="proj-tag">Financial Modeling</span>
+        <span class="proj-tag">Forecasting</span>
+      </div>
+    </div>
+
+    <!-- Sample 3 -->
+    <div class="proj-card">
+      <div class="proj-top-line"></div>
+      <div class="proj-icon">&#127970;</div>
+      <p class="proj-cat">M&amp;A / IB Simulation</p>
+      <p class="proj-name">Investment Banking Pitch Book</p>
+      <p class="proj-desc">Created a mock pitchbook covering M&amp;A rationale, deal structure, accretion/dilution analysis, and transaction comps via the Forage IB simulation.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">PowerPoint</span>
+        <span class="proj-tag">M&amp;A Analysis</span>
+        <span class="proj-tag">Valuation</span>
+      </div>
+    </div>
+
+    <!-- Sample 4 -->
+    <div class="proj-card">
+      <div class="proj-top-line"></div>
+      <div class="proj-icon">&#128269;</div>
+      <p class="proj-cat">Data &amp; Analytics</p>
+      <p class="proj-name">Sales Performance Dashboard</p>
+      <p class="proj-desc">Built an interactive Power BI dashboard at JK Lakshmi Cement to visualise regional sales KPIs, dealer performance, and monthly trend analysis.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">Power BI</span>
+        <span class="proj-tag">Excel</span>
+        <span class="proj-tag">Data Visualization</span>
+      </div>
+    </div>
+
+    <!-- Sample 5 -->
+    <div class="proj-card">
+      <div class="proj-top-line"></div>
+      <div class="proj-icon">&#127807;</div>
+      <p class="proj-cat">PE / VC Analysis</p>
+      <p class="proj-name">Startup Investment Memo</p>
+      <p class="proj-desc">Evaluated a startup's risk-return profile, prepared a term sheet summary, and justified the investment decision with valuation support.</p>
+      <div class="proj-tags">
+        <span class="proj-tag">VC Analysis</span>
+        <span class="proj-tag">Term Sheets</span>
+        <span class="proj-tag">Valuation</span>
+      </div>
+    </div>
+
+    <!-- Add More -->
+    <div class="proj-add-card">
+      <div class="add-plus">+</div>
+      <p class="add-label">Add Your Project</p>
+      <p style="font-size:0.73rem;color:var(--muted);margin-top:0.4rem;">Replace this card in the HTML</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="section" id="certifications">
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">Certifications</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="cert-grid reveal">
+
+    <div class="cert-card">
+      <div class="cert-badge">B</div>
+      <div>
+        <p class="cert-name">Bloomberg Marketing Concepts</p>
+        <p class="cert-org">Bloomberg &bull; Feb 2026</p>
+        <p class="cert-blurb">Financial product marketing, client segmentation, value proposition design, and data-driven solution positioning through Bloomberg-based case scenarios.</p>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-badge">N</div>
+      <div>
+        <p class="cert-name">NISM Series V-A &mdash; Mutual Fund Distributors</p>
+        <p class="cert-org">NISM &bull; Feb 2026</p>
+        <p class="cert-blurb">Mutual fund products, investor suitability assessment, and regulatory compliance requirements under SEBI guidelines.</p>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-badge">C</div>
+      <div>
+        <p class="cert-name">Corporate Finance Fundamentals</p>
+        <p class="cert-org">Coursera &bull; Aug 2025</p>
+        <p class="cert-blurb">Financial statement analysis, capital budgeting, NPV, IRR, cost of capital, and risk-return concepts applied to real-world business decisions.</p>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-badge">C</div>
+      <div>
+        <p class="cert-name">Private Equity &amp; Venture Capital</p>
+        <p class="cert-org">Coursera &bull; Mar &ndash; Aug 2025</p>
+        <p class="cert-blurb">Evaluating risk-return profiles, investment cycles, term sheets, and valuation methods for PE and VC deals.</p>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-badge">U</div>
+      <div>
+        <p class="cert-name">Advanced Excel Course</p>
+        <p class="cert-org">Udemy &bull; Mar &ndash; Apr 2025</p>
+        <p class="cert-blurb">Hands-on experience with VLOOKUP, PivotTables, data visualisation, dashboard creation, and business decision support using Excel.</p>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-badge">F</div>
+      <div>
+        <p class="cert-name">Investment Banking Job Simulation</p>
+        <p class="cert-org">Forage &bull; Aug &ndash; Oct 2024</p>
+        <p class="cert-blurb">Financial modelling, valuation, company analysis, pitch book creation, M&amp;A strategies, and investment decision-making through real-world case scenarios.</p>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-badge">H</div>
+      <div>
+        <p class="cert-name">Digital Marketing</p>
+        <p class="cert-org">HubSpot &bull; Jun &ndash; Aug 2024</p>
+        <p class="cert-blurb">SEO, social media marketing, and content strategy, applying digital marketing concepts using Google Analytics and campaign planning tools.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section section-dark" id="education">
+  <div class="sec-head">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">Education</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="edu-grid reveal">
+
+    <div class="edu-card">
+      <p class="edu-degree-label">Post Graduate Diploma in Management</p>
+      <p class="edu-school">FORE School of Management</p>
+      <p class="edu-sub">Finance &amp; Marketing &nbsp;&bull;&nbsp; Gurgaon, India</p>
+      <div class="edu-chips">
+        <span class="edu-chip">CGPA: 7.43</span>
+        <span class="edu-chip">Jul 2024 &ndash; Present</span>
+      </div>
+    </div>
+
+    <div class="edu-card">
+      <p class="edu-degree-label">Bachelor of Business Administration</p>
+      <p class="edu-school">Banasthali Vidyapith</p>
+      <p class="edu-sub">BBA &nbsp;&bull;&nbsp; Rajasthan, India</p>
+      <div class="edu-chips">
+        <span class="edu-chip">CGPA: 8.75</span>
+        <span class="edu-chip">Apr 2020 &ndash; May 2023</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-divider"></div>
+    <h2 class="contact-title reveal">Let&rsquo;s work <em>together.</em></h2>
+    <p class="contact-sub reveal">Open to full-time opportunities and internships in corporate finance, equity research, and investment banking. Always happy to connect.</p>
+    <div class="contact-cards reveal">
+      <a class="contact-card" href="mailto:jaintiya16@gmail.com">
+        <span class="cc-icon">&#9993;</span>
+        <span class="cc-lbl">Email</span>
+        <span class="cc-val">jaintiya16@gmail.com</span>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/tiyajain16/" target="_blank" rel="noopener">
+        <span class="cc-icon">&#128279;</span>
+        <span class="cc-lbl">LinkedIn</span>
+        <span class="cc-val">in/tiyajain16</span>
+      </a>
+      <a class="contact-card" href="tel:+918302642224">
+        <span class="cc-icon">&#128222;</span>
+        <span class="cc-lbl">Mobile</span>
+        <span class="cc-val">+91 83026 42224</span>
+      </a>
+    </div>
+    <div class="contact-actions reveal">
+      <a href="mailto:jaintiya16@gmail.com" class="btn btn-solid">Send an Email</a>
+      <a href="https://www.linkedin.com/in/tiyajain16/" target="_blank" rel="noopener" class="btn btn-outline">View LinkedIn &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2026 &nbsp;<span>Tiya Jain</span>&nbsp; &mdash; Finance &amp; Strategy Portfolio
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 65);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  revealEls.forEach(el => obs.observe(el));
+
+  // Nav highlight
+  const sections = document.querySelectorAll('[id]');
+  const navAs = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+    navAs.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
